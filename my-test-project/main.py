@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from OpenSSL import crypto
+# from OpenSSL import crypto
 import requests
 import uvicorn
 import os
@@ -15,20 +15,20 @@ app.version = "1.0.0"
 
 
 # Ruta del archivo de entrada y salida
-input_file = "./_.grupotsiperu.com.pe.crt"
-output_file = "./_.grupotsiperu.com.pe.pem"
+# input_file = "./_.grupotsiperu.com.pe.crt"
+# output_file = "./_.grupotsiperu.com.pe.pem"
 
-# Cargar el certificado desde el archivo .crt
-with open(input_file, "rb") as file:
-    crt_data = file.read()
-    cert = crypto.load_certificate(crypto.FILETYPE_PEM, crt_data)
+# # Cargar el certificado desde el archivo .crt
+# with open(input_file, "rb") as file:
+#     crt_data = file.read()
+#     cert = crypto.load_certificate(crypto.FILETYPE_PEM, crt_data)
 
-# Guardar el certificado en formato .pem
-with open(output_file, "wb") as file:
-    pem_data = crypto.dump_certificate(crypto.FILETYPE_PEM, cert)
-    file.write(pem_data)
+# # Guardar el certificado en formato .pem
+# with open(output_file, "wb") as file:
+#     pem_data = crypto.dump_certificate(crypto.FILETYPE_PEM, cert)
+#     file.write(pem_data)
 
-print("Archivo convertido exitosamente.")
+# print("Archivo convertido exitosamente.")
 
 class UsuarioAuthConfig(BaseModel):
     ruc: str
