@@ -58,9 +58,9 @@ def authConfig(usuario: UsuarioAuthConfig):
     # Ruta al archivo del certificado
     cert_file = "./_.grupotsiperu.com.pe.crt"
 
-    # with open(cert_file, "r") as file:
-    #     content = file.read()
-    #     print(content)
+    with open(cert_file, "r") as file:
+        content = file.read()
+        print(content)
     # Crear un contexto SSL con el certificado
     # context = ssl.create_default_context(cafile=cert_file)
 
