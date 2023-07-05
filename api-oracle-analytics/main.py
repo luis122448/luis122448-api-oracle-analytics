@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import HTTPException,status,FastAPI
 from pydantic import BaseModel
 import requests
 import uvicorn
@@ -36,11 +36,11 @@ def oracleAnalyticsToken():
         # Devolver un mensaje de error en caso de que la solicitud no sea exitosa
         return {"error": "Error al realizar la solicitud GET"}
 
-@app.post('/erp/auth-config')
+@app.post('/erp/auth-analytics')
 def authConfig(usuario: UsuarioAuthConfig):
 
     # URL de la API REST
-    url = 'https://sweb3.grupotsiperu.com.pe:8035/erp/api/rest/usuario/auth-config'
+    url = 'https://sweb3.grupotsiperu.com.pe:8035/erp/api/rest/usuario/auth-analytics'
 
     # Decodificar la clave en base64
     # clave = base64.b64decode(usuario.clave).decode('utf-8')
@@ -56,6 +56,7 @@ def authConfig(usuario: UsuarioAuthConfig):
     response = requests.post(url, json=data, verify=False)
 
     # Comprobar el estado de la respuesta
+    # Comprobar el estado de la respuesta
     if response.status_code == 200:
         # Obtener los datos de la respuesta
         result = response.json()
@@ -65,7 +66,7 @@ def authConfig(usuario: UsuarioAuthConfig):
         return result
     else:
         # Devolver un mensaje de error en caso de que la solicitud no sea exitosa
-        return {"error": "Error al realizar la solicitud POST"}
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Error al realizar la solicitud POST")
 
 if __name__ == '__main__':
 
