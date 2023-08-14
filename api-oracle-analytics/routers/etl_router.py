@@ -24,11 +24,11 @@ def dwTEST(request_body: EtlBasic):
         # Devolver un mensaje de error en caso de que la solicitud no sea exitosa
         raise HTTPException(status_code=response.status_code, detail=response.text)
 
-@etl_router.post('/erp/dataset/dw-cventas-dataset',tags=["CVENTAS"], response_model=ApiResponseSchema)
-def dwCVENTASDataset(request_body: EtlComplex):
+@etl_router.post('/erp/dataset/dw-cventa-dataset',tags=["CVENTA"], response_model=ApiResponseSchema)
+def dwCVENTADataset(request_body: EtlComplex):
 
     # URL de la API REST
-    url = 'https://cloud.grupotsiperu.com.pe:8000/erp/dataset/dw-cxc-dataset'
+    url = 'https://cloud.grupotsiperu.com.pe:8000/erp/dataset/dw-cventa-dataset'
 
     # Realizar la solicitud POST
     response = requests.post(url, json=jsonable_encoder(request_body), verify=False)
@@ -46,6 +46,40 @@ def dwCXCDataset(request_body: EtlBasic):
 
     # URL de la API REST
     url = 'https://cloud.grupotsiperu.com.pe:8000/erp/dataset/dw-cxc-dataset'
+
+    # Realizar la solicitud POST
+    response = requests.post(url, json=jsonable_encoder(request_body), verify=False)
+
+    # Comprobar el estado de la respuesta
+    if response.status_code == 200:
+        # Devolver los datos como respuesta en formato JSON
+        return JSONResponse(status_code=status.HTTP_200_OK, content=response.json())
+    else:
+        # Devolver un mensaje de error en caso de que la solicitud no sea exitosa
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+
+@etl_router.post('/erp/dataset/dw-cventa-minidataset', tags=["CVENTA"], response_model=ApiResponseSchema)
+def dwCVENTAMiniDataset(request_body: EtlBasic):
+
+    # URL de la API REST
+    url = 'https://cloud.grupotsiperu.com.pe:8000/erp/dataset/dw-cventa-minidataset'
+
+    # Realizar la solicitud POST
+    response = requests.post(url, json=jsonable_encoder(request_body), verify=False)
+
+    # Comprobar el estado de la respuesta
+    if response.status_code == 200:
+        # Devolver los datos como respuesta en formato JSON
+        return JSONResponse(status_code=status.HTTP_200_OK, content=response.json())
+    else:
+        # Devolver un mensaje de error en caso de que la solicitud no sea exitosa
+        raise HTTPException(status_code=response.status_code, detail=response.text)
+
+@etl_router.post('/erp/dataset/dw-proyeccion', tags=["PROYECCION"], response_model=ApiResponseSchema)
+def dwPROYECCIONDataset(request_body: EtlBasic):
+
+    # URL de la API REST
+    url = 'https://cloud.grupotsiperu.com.pe:8000/erp/dataset/dw-proyeccion'
 
     # Realizar la solicitud POST
     response = requests.post(url, json=jsonable_encoder(request_body), verify=False)
