@@ -51,7 +51,7 @@ def dwCVENTADataset(request_body: EtlBasic):
         "message": "Proceso finalizado, se actualizaron un total de 41553 registros!"
     }
 
-    return JSONResponse(status_code=status.HTTP_200_OK, content=response_data.json())
+    return JSONResponse(status_code=status.HTTP_200_OK, content=response_data)
 
 @etl_router.post('/erp/dataset/dw-cxc-dataset',tags=["CXC"], response_model=ApiResponseSchema)
 def dwCXCDataset(request_body: EtlBasic):
@@ -79,7 +79,7 @@ def dwCXCDataset(request_body: EtlBasic):
         "message": "Proceso finalizado, se actualizaron un total de 653 registros!"
     }
 
-    return JSONResponse(status_code=status.HTTP_200_OK, content=response_data.json())
+    return JSONResponse(status_code=status.HTTP_200_OK, content=response_data)
 
 @etl_router.post('/erp/dataset/dw-cventa-minidataset', tags=["CVENTA"], response_model=ApiResponseSchema)
 def dwCVENTAMiniDataset(request_body: EtlBasic):
