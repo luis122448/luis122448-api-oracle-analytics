@@ -53,6 +53,20 @@ def dwCVENTADataset(request_body: EtlBasic):
 
     return JSONResponse(status_code=status.HTTP_200_OK, content=response_data)
 
+@etl_router.post('/erp/dataset/dw-cventa-dataset-articulo',tags=["CVENTA"], response_model=ApiResponseSchema)
+def dwCVENTADatasetArticulo(request_body: EtlBasic):
+
+    # Simular un retraso de 2 segundos
+    time.sleep(2)
+
+    # Crear una respuesta JSON
+    response_data = {
+        "status": 1,
+        "message": "Proceso finalizado, se actualizaron un total de 411 registros!"
+    }
+
+    return JSONResponse(status_code=status.HTTP_200_OK, content=response_data)
+
 @etl_router.post('/erp/dataset/dw-cxc-dataset',tags=["CXC"], response_model=ApiResponseSchema)
 def dwCXCDataset(request_body: EtlBasic):
 
